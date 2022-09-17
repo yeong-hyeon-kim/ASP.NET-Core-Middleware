@@ -1,4 +1,5 @@
 ﻿@page
+@using ASP.NET_Core_Middleware.Lib.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,5 +7,23 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Learn about building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div>
+    <ol>
+        @{
+            var List = Model.GetUsers();
+
+            foreach (var item in List)
+            {
+                <li>
+                    <a>@item.Name</a>
+                    <a>@item.Email</a>
+                    <a>@item.Age</a>
+                    <a>@item.AccessDateTime</a>
+                </li>
+            }
+        }
+    </ol>
+</div>
+

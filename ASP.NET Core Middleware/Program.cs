@@ -1,5 +1,7 @@
 using App.Middlewares;
 using ASP.NET_Core_Middleware.Data;
+using ASP.NET_Core_Middleware.Lib.Interfaces;
+using ASP.NET_Core_Middleware.Lib.Object;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+
+// DI : Dependency Injection
+// 종속성 주입 : 상위(인터페이스) 타입으로 하위(클래스) 타입을 생성합니다.
+builder.Services.AddTransient<IUser, UserList>();
 
 var app = builder.Build();
 
