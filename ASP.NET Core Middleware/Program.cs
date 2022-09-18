@@ -17,6 +17,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+builder.Services.AddTransient<IActionTransient, LifeTime>();
+builder.Services.AddScoped<IActionScoped, LifeTime>();
+builder.Services.AddSingleton<IActionSingleton, LifeTime>();
+builder.Services.AddSingleton<IActionSingletonInstance>(new LifeTime(Guid.Empty));
+
 // DI : Dependency Injection
 // 종속성 주입 : 상위(인터페이스) 타입으로 하위(클래스) 타입을 생성합니다.
 builder.Services.AddTransient<IUser, UserList>();

@@ -1,13 +1,35 @@
 ﻿@page
 @using ASP.NET_Core_Middleware.Lib.Models
+@using ASP.NET_Core_Middleware.Lib.Object
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var Transient = ViewData["Transient"] as LifeTime;
+    var Scoped = ViewData["Scoped"] as LifeTime;
+    var Singleton = ViewData["Singleton"] as LifeTime;
+    var SingletonInstance = ViewData["SingletonInstance"] as LifeTime;
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <ol>
+        <li>
+            @Transient.GetID();
+        </li>
+        <li>
+            @Scoped.GetID();
+        </li>
+        <li>
+            @Singleton.GetID();
+        </li>
+        <li>
+            @SingletonInstance.GetID();
+        </li>
+    </ol>
 </div>
 <div>
     <ol>
@@ -16,14 +38,13 @@
 
             foreach (var item in List)
             {
-                <li>
-                    <a>@item.Name</a>
-                    <a>@item.Email</a>
-                    <a>@item.Age</a>
-                    <a>@item.AccessDateTime</a>
-                </li>
+                    <li>
+                        <a>@item.Name</a>
+                        <a>@item.Email</a>
+                        <a>@item.Age</a>
+                        <a>@item.AccessDateTime</a>
+                    </li>
             }
         }
     </ol>
 </div>
-
