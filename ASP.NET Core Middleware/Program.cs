@@ -17,8 +17,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+// Transient : 요청 받을 때마다 생성합니다.
 builder.Services.AddTransient<IActionTransient, LifeTime>();
+// Scoped : 요청 당 한 번 생성합니다.
 builder.Services.AddScoped<IActionScoped, LifeTime>();
+// Singleton : 처음 요청 받아 생성된 인스턴스를 런타임이 끝날 때까지 사용합니다.
 builder.Services.AddSingleton<IActionSingleton, LifeTime>();
 builder.Services.AddSingleton<IActionSingletonInstance>(new LifeTime(Guid.Empty));
 
