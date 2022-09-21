@@ -31,10 +31,5 @@ namespace ASP.NET_Core_Middleware.Lib.Object
                 }
             };
         }
-
-        public static explicit operator UserList(List<User> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
